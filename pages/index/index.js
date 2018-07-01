@@ -5,6 +5,7 @@ Page({
   data: {
     timer: "00:00",
     isRunning:false,
+
   },
   onLoad: function () {
     
@@ -20,35 +21,35 @@ Page({
     },
   bindTap: function (e) {
       if (this.endTime - this.startTime < 350) {
-        this.setData({
-          timer: '00:00'
-        });
+        // clear timer
+        this.timers && clearInterval(this.timers);
         console.log("点击")
       }
-    },
+  },
   bingLongTap: function (e) {
-      formatTime(this);
-    }
-  })
-const timeUp = (callback) => {
-  clearInterval(timers);
-  let n = 0, timeee = '';
-  setInterval(function () {
-    n++;
-    let m = parseInt(n / 60);
-    let s = parseInt(n % 60);
-    timeee = toDub(m) + ":" + toDub(s);
-    callback(timeee);
-  }, 1000 / 60);
-}
-const formatTime =(that)=> {
-  timeUp(function(val){
-     that.setData({
-       timer: val
-     });
-  })
-}
-const toDub = (n) => {
-  return n < 10 ? "0" + n : "" + n;
-}
+    this.formatTime(this);
+  },
+  timeUp:function (callback){
+    let _this =this
+    let n = 0, timeee = '';
+    _this.timers = setInterval(function () {
+      n++;
+      let m = parseInt(n / 60);
+      let s = parseInt(n % 60);
+      timeee = _this.toDub(m) + ":" + _this.toDub(s);
+      callback(timeee);
+    }, 1000 / 60);
+  },
+  formatTime:function (that){
+    this.timeUp(function (val) {
+      that.setData({
+        timer: val
+      });
+    })
+  },
+  toDub:function (n) {
+    return n < 10 ? "0" + n : "" + n;
+  }
+})
+
 
