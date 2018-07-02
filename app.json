@@ -13,7 +13,7 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "计时器",
+        "text": "计时",
         "iconPath":"images/time.png",
         "selectedIconPath":"images/timeActive.png"
       },

@@ -1,1 +1,51 @@
-/* pages/score/scores.wxss */
+.history-table-wrap{
+  position: absolute;
+  width: 100%;
+  top: 70rpx;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+/* 表格代码   */
+.table{
+  border:1px solid #dadada;
+  border-right:0;
+  border-bottom: 0;
+  width: 80%;
+  margin: 0 auto;
+}
+.tr{
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+}
+.th,.td{
+  padding: 10px;
+  border-bottom: 1px solid #dadada;
+  border-right: 1px solid #dadada;
+  text-align: center;
+  width: 100%;
+}
+.th1,.td1{
+  width: 10%;
+}
+.th2,.th3,.th4,.td2,.td3,.td4{
+  width: 30%;
+}
+.th{
+  font-weight: 800;
+  font-size: 28rpx;
+  color: #330e0e;
+}
+.td{
+  font-size: 20rpx;
+}
+.title{
+  width: 80%;
+  margin: 20rpx auto;
+  font-size: 12px;
+  color:#ccc;
+  text-align: center;
+}
+.title text{
+  margin: 0 10rpx;
+}

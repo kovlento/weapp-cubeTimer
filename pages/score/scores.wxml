@@ -1,2 +1,21 @@
-<!--pages/score/scores.wxml-->
-<text>pages/score/scores.wxml</text>
+ <view class='history-table-wrap'>
+    <view class='title'>
+      <text>还原: 6/6</text>
+      <text>平均: 10:00</text>
+      <text>最快: 10:00</text>
+    </view>
+    <view class="table">
+      <view class="tr">
+          <view class="th th1"></view>
+          <view class="th th2">时间</view>
+          <view class="th th3">ao5</view>
+          <view class="th th4">ao12</view>
+      </view>
+      <view class="tr" wx:for="{{15}}">
+          <view class="td td1">1</view>
+          <view class="td td2">10:00</view>
+          <view class="td td3">12:12</view>
+          <view class="td td4">13:13</view>
+      </view>
+    </view>
+ </view>
