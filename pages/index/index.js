@@ -5,7 +5,10 @@ Page({
   data: {
     timer: "00:00",
     isRunning:false,
-
+    color:'black',
+    tips:'长按屏幕任意位置离开后开始计时',
+    showTips:true,
+    showModalStatus: false
   },
   onLoad: function () {
     
@@ -13,21 +16,37 @@ Page({
   onShow:function(){
    
   },
+  preventTouchMove: function (e) {
+    //阻止mask出现后点击屏幕
+  },
   bindTouchStart: function (e) {
     this.startTime = e.timeStamp;
   },
   bindTouchEnd: function (e) {
       this.endTime = e.timeStamp;
-    },
-  bindTap: function (e) {
       if (this.endTime - this.startTime < 350) {
         // clear timer
         this.timers && clearInterval(this.timers);
-        console.log("点击")
+      } else {
+        this.formatTime(this);
+        this.setData({
+          showTips: false
+        });
+        console.log(this.data.showTips);
       }
   },
-  bingLongTap: function (e) {
-    this.formatTime(this);
+  bindTap: function (e) {
+    this.timers && clearInterval(this.timers);
+    console.log("点击")
+    this.setData({
+      showModalStatus: true
+    });
+  },
+  bindLongPress: function (e) {
+     console.log("长按");
+     this.setData({
+       color: '#04BF02',
+     });
   },
   timeUp:function (callback){
     let _this =this
@@ -49,6 +68,30 @@ Page({
   },
   toDub:function (n) {
     return n < 10 ? "0" + n : "" + n;
+  },
+  powerRestart: function(){
+    console.log('重新开始');
+    this.setData({
+      showModalStatus: false
+    });
+  },
+  powerGood: function(){
+    console.log('无惩罚');
+    this.setData({
+      showModalStatus: false
+    });
+  },
+  powerDnf: function(){
+    console.log('DNF');
+    this.setData({
+      showModalStatus: false
+    });
+  },
+  powerAddSecond: function(){
+    console.log('+2');
+    this.setData({
+      showModalStatus: false
+    });
   }
 })
 

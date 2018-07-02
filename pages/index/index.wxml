@@ -1,9 +1,29 @@
 <!--index.wxml-->
-<view bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd" bindlongtap="bingLongTap" bindtap="bindTap" class="container">
-  <view class="userinfo">
-
-  </view>
+<view bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd" bindlongpress="bindLongPress" bindtap="bindTap" class="container">
   <view class="usermotto">
-    <text class="user-motto">{{timer}}</text>
+    <text style="color:{{color}}" class="user-motto">{{timer}}</text>
+    <view  class="tips {{showTips?'show':'hide'}}">{{tips}}</view>
+  </view>
+  <view  class="drawer_screen"  catchtouchmove="preventTouchMove" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<!--content-->
+<!--使用animation属性指定需要执行的动画-->
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+ 
+  <!--drawer content-->
+  <!-- <view class="drawer_title">弹窗标题</view> -->
+  <view class="drawer_content">
+    <view class="top grid">
+      <view class="btn_ok" catchtap="powerAddSecond" >+2</view>
+    </view>
+    <view class="top grid">
+      <view class="btn_ok" catchtap="powerDnf" >DNF</view>
+    </view>
+    <view class="top grid">
+      <view class="btn_ok" catchtap="powerGood" >无惩罚</view>
+    </view>
+    <view class="top grid">
+      <view class="btn_ok" catchtap="powerRestart">重新开始</view>
+    </view>
+  </view>
   </view>
 </view>
