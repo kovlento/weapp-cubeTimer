@@ -38,14 +38,17 @@ Page({
   bindTap: function (e) {
     this.timers && clearInterval(this.timers);
     console.log("点击")
-    this.setData({
-      showModalStatus: true
-    });
+    if (this.data.isRunning==true){
+      this.setData({
+        showModalStatus: true
+      });
+    }
   },
   bindLongPress: function (e) {
      console.log("长按");
      this.setData({
        color: '#04BF02',
+       isRunning:true,
      });
   },
   timeUp:function (callback){
@@ -72,6 +75,11 @@ Page({
   powerRestart: function(){
     console.log('重新开始');
     this.setData({
+      timer: "00:00",
+      isRunning: false,
+      color: 'black',
+      tips: '长按屏幕任意位置离开后开始计时',
+      showTips: true,
       showModalStatus: false
     });
   },
