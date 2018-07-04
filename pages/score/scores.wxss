@@ -1,7 +1,6 @@
 .history-table-wrap{
   position: absolute;
   width: 100%;
-  top: 70rpx;
   overflow-y: scroll;
   overflow-x: hidden;
 }

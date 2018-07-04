@@ -1,7 +1,4 @@
 // pages/score/scores.js
-var array = [];
-var app = getApp();
-
 Page({
 
   /**
@@ -29,12 +26,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(app);
-    console.log(app.scores);
-    var score = wx.getStorageSync('scores');
-    let obj = {};
-    obj.times = score
-    array.push(obj);
+    let array = [];
+    let score = wx.getStorageSync('scores');
+    var scoreArr = score.reverse();
+    for (let i = 0; i < scoreArr.length;i++){
+      let obj = {};
+      obj.times = score[i]
+      array.push(obj);
+    }
     console.log(array);
     this.setData({
       scores: array

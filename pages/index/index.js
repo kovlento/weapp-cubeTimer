@@ -96,7 +96,6 @@ Page({
     });
   },
   powerAddSecond: function(){
-    var qqq=111
     let time = this.data.timer;
     let strs = time.split(":"); //字符分割   
     let newTime = this.toDub(strs[0] - 0 + 2) +':'+strs[1];   
@@ -113,7 +112,9 @@ Page({
     let sarray = wx.getStorageSync('scores');
     console.log(sarray);
     sarray += newTime+','
-    var data = sarray.split(',');
+    console.log(sarray);
+    let basic = sarray.substr(0, sarray.length - 1);
+    var data = basic.split(',');
     wx.setStorageSync('scores', data)
   }
 })
