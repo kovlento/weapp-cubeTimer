@@ -11,11 +11,11 @@
           <view class="th th3">ao5</view>
           <view class="th th4">ao12</view>
       </view>
-      <view class="tr" wx:for="{{15}}">
-          <view class="td td1">1</view>
-          <view class="td td2">10:00</view>
-          <view class="td td3">12:12</view>
-          <view class="td td4">13:13</view>
+      <view class="tr" wx:for="{{scores}}" wx:for-index="idx" wx:for-item="scores" wx:key="scores">
+          <view class="td td1">{{scores.item}}</view>
+          <view class="td td2">{{scores.times}}</view>
+          <view class="td td3">{{scores.ao5Times}}</view>
+          <view class="td td4">{{scores.ao12Times}}</view>
       </view>
     </view>
  </view>

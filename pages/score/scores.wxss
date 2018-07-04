@@ -10,7 +10,7 @@
   border:1px solid #dadada;
   border-right:0;
   border-bottom: 0;
-  width: 80%;
+  width: 98%;
   margin: 0 auto;
 }
 .tr{

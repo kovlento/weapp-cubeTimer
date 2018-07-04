@@ -1,4 +1,7 @@
 /**index.wxss**/
+page{
+  height: 100%;
+}
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -17,7 +20,7 @@
 }
 
 .usermotto {
-  margin-top: 100px;
+  margin-top: 300rpx;
 }
 
 .user-motto {

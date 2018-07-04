@@ -96,10 +96,25 @@ Page({
     });
   },
   powerAddSecond: function(){
-    console.log('+2');
+    var qqq=111
+    let time = this.data.timer;
+    let strs = time.split(":"); //字符分割   
+    let newTime = this.toDub(strs[0] - 0 + 2) +':'+strs[1];   
     this.setData({
-      showModalStatus: false
+      showModalStatus: false,
+      isRunning: false,
+      color:'black',
+      showTips: true,
+      timer: newTime
     });
+    // wx.navigateTo({
+    //   url: '../score/scores?scores=' + qqq,
+    // })
+    let sarray = wx.getStorageSync('scores');
+    console.log(sarray);
+    sarray += newTime+','
+    var data = sarray.split(',');
+    wx.setStorageSync('scores', data)
   }
 })
 
