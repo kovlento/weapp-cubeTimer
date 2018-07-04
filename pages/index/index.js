@@ -113,8 +113,7 @@ Page({
     console.log(sarray);
     sarray += newTime+','
     console.log(sarray);
-    let basic = sarray.substr(0, sarray.length - 1);
-    var data = basic.split(',');
+    var data = sarray.split(',');
     wx.setStorageSync('scores', data)
   }
 })

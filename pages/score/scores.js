@@ -29,7 +29,7 @@ Page({
     let array = [];
     let score = wx.getStorageSync('scores');
     var scoreArr = score.reverse();
-    for (let i = 0; i < scoreArr.length;i++){
+    for (let i = 1; i < scoreArr.length;i++){
       let obj = {};
       obj.times = score[i]
       array.push(obj);
