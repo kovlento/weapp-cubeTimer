@@ -36,20 +36,29 @@ Page({
       }
   },
   bindTap: function (e) {
-    this.timers && clearInterval(this.timers);
-    console.log("点击")
     if (this.data.isRunning==true){
+      this.timers && clearInterval(this.timers);
+      console.log("点击");
       this.setData({
+        isRunning: false,
         showModalStatus: true
       });
     }
   },
   bindLongPress: function (e) {
-     console.log("长按");
-     this.setData({
-       color: '#04BF02',
-       isRunning:true,
-     });
+    if (this.data.isRunning == false){
+      console.log("长按");
+      wx.setTabBarItem({
+        index: 0,
+        text: '',
+        iconPath: "",
+        selectedIconPath:""
+      })
+      this.setData({
+        color: '#04BF02',
+        isRunning: true,
+      });
+    }
   },
   timeUp:function (callback){
     let _this =this
@@ -106,12 +115,33 @@ Page({
       showTips: true,
       timer: newTime
     });
-    // wx.navigateTo({
-    //   url: '../score/scores?scores=' + qqq,
-    // })
+    this.passData(newTime)
+  },
+  clearTab:function(){
+    wx.setTabBarItem({
+      index: 0,
+      text: '',
+      iconPath: '',
+      selectedIconPath: ''
+    })
+  },
+  addTab:function(){
+    wx.setTabBarItem({
+      index: 0,
+      text: '计时',
+      iconPath: 'images/time.png',
+      selectedIconPath: 'images/timeActive.png'
+    }, {
+        index: 1,
+        text: '成绩',
+        iconPath: 'images/manage.png',
+        selectedIconPath: 'images/manageActive.png'
+      })
+  },
+  passData: function (newTime){
     let sarray = wx.getStorageSync('scores');
     console.log(sarray);
-    sarray += newTime+','
+    sarray += newTime + ','
     console.log(sarray);
     var data = sarray.split(',');
     wx.setStorageSync('scores', data)

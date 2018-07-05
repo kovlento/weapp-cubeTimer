@@ -59,7 +59,7 @@ page{
   width: 650rpx;
   overflow: hidden;
   position: fixed;
-  top: 50%;
+  top: 60%;
   left: 0;
   z-index: 1001;
   background: #FAFAFA;
@@ -73,13 +73,13 @@ page{
   text-align: center;
 }
 .drawer_content {
-  height: 302px;
+  height: 223px;
   overflow-y: scroll; /*超出父盒子高度可滚动*/
 }
  
 .btn_ok{
   width: 100%;
-  padding: 20px 0;
+  padding: 10px 0;
   font: 20px "microsoft yahei";
   text-align: center;
   border-bottom: 1px solid #E8E8EA;
