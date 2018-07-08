@@ -1,8 +1,7 @@
  <view class='history-table-wrap'>
     <view class='title'>
-      <text>还原: 6/6</text>
-      <text>平均: 10:00</text>
-      <text>最快: 10:00</text>
+      <text>还原: {{revert}}</text>
+      <text>最快: {{fastest}}</text>
     </view>
     <view class="table">
       <view class="tr">

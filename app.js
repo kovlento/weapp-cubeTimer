@@ -34,6 +34,19 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    timerBar: {
+      "pagePath": "pages/index/index",
+      "text": "计时",
+      "iconPath": "images/time.png",
+      "selectedIconPath": "images/timeActive.png"
+    },
+    scoreBar: {
+      "pagePath": "pages/score/scores",
+      "text": "成绩",
+      "iconPath": "images/manage.png",
+      "selectedIconPath": "images/manageActive.png"
+    }
+
   }
 })

@@ -23,11 +23,12 @@ Page({
     this.startTime = e.timeStamp;
   },
   bindTouchEnd: function (e) {
+      let that = this
       this.endTime = e.timeStamp;
       if (this.endTime - this.startTime < 350) {
         // clear timer
         this.timers && clearInterval(this.timers);
-      } else {
+      } else if (that.data.showModalStatus == false){
         this.formatTime(this);
         this.setData({
           showTips: false
@@ -36,7 +37,7 @@ Page({
       }
   },
   bindTap: function (e) {
-    if (this.data.isRunning==true){
+    if (this.data.isRunning == true && this.data.showModalStatus == false){
       this.timers && clearInterval(this.timers);
       console.log("点击");
       this.setData({
@@ -46,14 +47,8 @@ Page({
     }
   },
   bindLongPress: function (e) {
-    if (this.data.isRunning == false){
+    if (this.data.isRunning == false && this.data.showModalStatus == false){
       console.log("长按");
-      wx.setTabBarItem({
-        index: 0,
-        text: '',
-        iconPath: "",
-        selectedIconPath:""
-      })
       this.setData({
         color: '#04BF02',
         isRunning: true,
