@@ -45,6 +45,7 @@ Page({
     }
     this.refreshRevert();
     this.refreshFastest();
+    this.timeAo5();
   },
 
   /**
@@ -113,5 +114,51 @@ Page({
   },
   indexOfSmallest:function(a) {
     return a.indexOf(Math.min.apply(Math, a));
-  }
+  },
+  timeAo5:function(){
+    let that = this;
+    let score = wx.getStorageSync('scores');
+    let newArr = this.filter_array(score);
+    let arr1 = [];
+    if (score != '') {
+      newArr.forEach(function (item) {
+        let items = item.replace(':', '.')
+        arr1.push(items)
+      });
+      let arr2 = (arr1.map(Number)).reverse();
+      let totalTime = 0;
+      console.log(arr2);
+      if (arr2 != '' && arr2.length>4) {
+        let sum = arr2.length - 4;
+        for (let j = 0; j < sum;j++){
+          for (let i = j; i < j+5; i++) {
+            totalTime = (arr2[i] * 1000) - 0 + totalTime;
+          }
+          let ao5 = (totalTime / 5000).toString();
+          console.log(ao5);
+          let tofixao5 = parseFloat(ao5).toFixed(2);
+          console.log(tofixao5);
+          let ao51 = tofixao5.replace('.', ':');
+          let ao52 = ao51.split(':');
+          let trueAo5 = that.toDub(ao52[0]) + ':' + ao52[1];
+          console.log(trueAo5);
+          // let obj = {};
+          // obj.ao5Times = trueAo5
+          // array.push(obj);
+          let array = this.data.scores
+          console.log(array);
+          array[j].ao5Times = trueAo5;
+          this.setData({
+            scores: array
+          })
+        }
+      }
+    }
+  },
+  timeAo12: function () {
+
+  },
+  toDub: function (n) {
+    return n < 10 ? "0" + n : "" + n;
+  },
 })
