@@ -89,9 +89,17 @@ Page({
   },
   powerGood: function(){
     console.log('无惩罚');
+    let time = this.data.timer;
+    // let strs = time.split(":"); //字符分割   
+    // let newTime = this.toDub(strs[0] - 0 ) + ':' + strs[1];
     this.setData({
-      showModalStatus: false
+      showModalStatus: false,
+      isRunning: false,
+      color: 'black',
+      showTips: true,
+      timer: time
     });
+    this.passData(time)
   },
   powerDnf: function(){
     console.log('DNF');

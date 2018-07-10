@@ -15,9 +15,9 @@
     <view class="top grid">
       <view class="btn_ok" catchtap="powerAddSecond" >+2</view>
     </view>
-    <view class="top grid">
+    <!-- <view class="top grid">
       <view class="btn_ok" catchtap="powerDnf" >DNF</view>
-    </view>
+    </view> -->
     <view class="top grid">
       <view class="btn_ok" catchtap="powerGood" >无惩罚</view>
     </view>

@@ -73,17 +73,16 @@ page{
   text-align: center;
 }
 .drawer_content {
-  height: 223px;
+  height: 158px;
   overflow-y: scroll; /*超出父盒子高度可滚动*/
 }
  
 .btn_ok{
   width: 100%;
   padding: 10px 0;
-  font: 20px "microsoft yahei";
+  font: 16px "microsoft yahei";
   text-align: center;
   border-bottom: 1px solid #E8E8EA;
-  color: #3CC51F;
 }
  
 .top{
