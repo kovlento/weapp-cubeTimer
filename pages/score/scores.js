@@ -121,7 +121,7 @@ Page({
     this.avgCommon(n, _that);
   },
   timeAo12: function () {
-    let n=12,_that = this;
+    let n = 12,_that = this;
     this.avgCommon(n,_that);
   },
   avgCommon:function(n,_that){
@@ -136,7 +136,7 @@ Page({
       });
       let arr2 = (arr1.map(Number)).reverse();
       if (arr2 != '' && arr2.length > n-1) {
-        let sum = arr2.length - n-1;
+        let sum = arr2.length - (n - 1);
         for (let j = 0; j < sum; j++) {
           let totalTime = 0;
           for (let i = j; i < j + n; i++) {
@@ -148,9 +148,9 @@ Page({
           let avg2 = avg1.split(':');
           let trueAvg = that.toDub(avg2[0]) + ':' + avg2[1];
           let array = this.data.scores;
-          if(n==5){
+          if(n===5){
             array[j].ao5Times = trueAvg;
-          }else if(n==12){
+          }else if(n===12){
             array[j].ao12Times = trueAvg;
           }
           this.setData({
