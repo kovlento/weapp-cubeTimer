@@ -58,13 +58,33 @@ Page({
   timeUp:function (callback){
     let _this =this
     let n = 0, timeee = '';
+    var hour, minute, second;//时 分 秒
+    hour = minute = second = 0;//初始化
+    var millisecond = 0;//毫秒
     _this.timers = setInterval(function () {
-      n++;
-      let m = parseInt(n / 60);
-      let s = parseInt(n % 60);
-      timeee = _this.toDub(m) + ":" + _this.toDub(s);
+      millisecond = millisecond + 50;
+      if (millisecond >= 1000) {
+        millisecond = 0;
+        console.log(millisecond);
+        second = second + 1;
+      }
+      if (second >= 60) {
+        second = 0;
+        minute = minute + 1;
+      }
+      if (minute >= 60) {
+        minute = 0;
+        hour = hour + 1;
+      }
+      console.log("m"+minute)
+      console.log("s" + second)
+      if ( minute == 0 && second<60){
+        timeee = _this.toDub(second) + ':' + _this.toDus(millisecond)
+      }else{
+        timeee = _this.toDub(minute) + ':' + _this.toDub(second) + ':' + _this.toDus(millisecond);
+      }
       callback(timeee);
-    }, 1000 / 60);
+    }, 50);
   },
   formatTime:function (that){
     this.timeUp(function (val) {
@@ -75,6 +95,16 @@ Page({
   },
   toDub:function (n) {
     return n < 10 ? "0" + n : "" + n;
+  },
+  toDus: function (n) {
+   if(n>=50&&n<100){
+      n ="0" + n
+   }else if(n>100&&n<1000){
+     n = "" + n
+   }else if(n==0){
+     n = "00" + n
+   }
+   return n;
   },
   powerRestart: function(){
     console.log('重新开始');
