@@ -6,7 +6,7 @@ Page({
    */
   data: {
     revert:'0/0',
-    fastest:'00:00',
+    fastest:'00:000',
     scores:[],
   },
 
@@ -30,7 +30,6 @@ Page({
   onShow: function () {
     let array = [];
     let score = wx.getStorageSync('scores');
-    console.log(score);
     if(score!=''){
       var scoreArr = score.reverse();
       for (let i = 1; i < scoreArr.length; i++) {
@@ -38,7 +37,6 @@ Page({
         obj.times = score[i]
         array.push(obj);
       }
-      console.log(array);
       this.setData({
         scores: array
       })
@@ -87,7 +85,6 @@ Page({
     var that = this;
     let score = wx.getStorageSync('scores');
     if(score!=''){
-      console.log(score.length);
       this.setData({
         revert: score.length - 1 + '/' + (score.length - 1)
       })
@@ -99,10 +96,11 @@ Page({
     let arr1 = [];
     if (score != '') {
       newArr.forEach(function (item) {
-        let items = item.replace(':','')
+        let items = item.replace(/:/g,'');
         arr1.push(items)
       });
-      let arr2 = arr1.map(Number)
+      let arr2 = arr1.map(Number);
+      console.log(arr2);
       let indexs = this.indexOfSmallest(arr2);
       this.setData({
         fastest: newArr[indexs]
@@ -110,8 +108,10 @@ Page({
     }
     
   },
-  filter_array:function(array) {  
-    return array.filter(item => item); 
+  filter_array:function(array) {
+    if(array!=''){
+      return array.filter(item => item);
+    }  
   },
   indexOfSmallest:function(a) {
     return a.indexOf(Math.min.apply(Math, a));
@@ -128,30 +128,59 @@ Page({
     let that = _that;
     let score = wx.getStorageSync('scores');
     let newArr = this.filter_array(score);
-    let arr1 = [];
+    let arr1 = [],arr2=[];
     if (score != '') {
+      console.log(newArr);
       newArr.forEach(function (item) {
-        let items = item.replace(':', '.')
-        arr1.push(items)
+        let items = item.split(':');
+        console.log(items);
+        let sumItem='';
+        if (items.length==3){
+          sumItem = parseInt(items[0]) * 60000 + parseInt(items[1]) * 1000 + parseInt(items[2]);
+        }else if(items.length==2){
+          sumItem =parseInt(items[0]) * 1000 + parseInt(items[1]);
+        }
+        arr2.push(sumItem);
       });
-      let arr2 = (arr1.map(Number)).reverse();
+      console.log(arr2);
+      // let arr2 = (arr1.map(Number)).reverse();
+      // console.log(arr2);
       if (arr2 != '' && arr2.length > n-1) {
         let sum = arr2.length - (n - 1);
         for (let j = 0; j < sum; j++) {
           let totalTime = 0;
           for (let i = j; i < j + n; i++) {
-            totalTime = (arr2[i] * 1000) - 0 + totalTime;
+
+            totalTime = arr2[i]  + totalTime;
+          };
+          let timesavg = totalTime/5;
+          let m='',s='',ms='',ism='',iss='',isms='',avg='';
+          console.log(timesavg);
+          if (parseInt(timesavg / 60000)>0){
+            m = parseInt(timesavg / 60000);
+            ism = timesavg % 60000;
+            if (parseInt(ism / 1000)>0){
+              s = parseInt(ism / 1000);
+              iss = timesavg % 1000;
+              avg = that.toDub(m)+':'+that.toDub(s)+':'+iss
+            }else{
+              avg = that.toDub(m) + ':00' + ':' + ism
+            }
+          } else if (parseInt(timesavg / 60000)==0){
+            if (parseInt(timesavg / 1000) > 0) {
+              console.log(11111111);
+              s = parseInt(timesavg / 1000);
+              iss = timesavg % 1000;
+              avg =  '00:' + that.toDub(s) + ':' + iss;
+            } else {
+              avg = '00:00' + ':' + timesavg
+            }
           }
-          let avg = (totalTime / (n*1000)).toString();
-          let tofixao = parseFloat(avg).toFixed(2);
-          let avg1 = tofixao.replace('.', ':');
-          let avg2 = avg1.split(':');
-          let trueAvg = that.toDub(avg2[0]) + ':' + avg2[1];
           let array = this.data.scores;
           if(n===5){
-            array[j].ao5Times = trueAvg;
+            array[j].ao5Times = avg;
           }else if(n===12){
-            array[j].ao12Times = trueAvg;
+            array[j].ao12Times = avg;
           }
           this.setData({
             scores: array
@@ -160,6 +189,7 @@ Page({
       }
     }
   },
+
   toDub: function (n) {
     return n < 10 ? "0" + n : "" + n;
   },

@@ -3,7 +3,7 @@ const util = require('../../utils/util.js')
 
 Page({
   data: {
-    timer: "00:00",
+    timer: "00:000",
     isRunning:false,
     color:'black',
     tips:'长按屏幕任意位置离开后开始计时',
@@ -138,9 +138,15 @@ Page({
     });
   },
   powerAddSecond: function(){
+    let newTime = '';
     let time = this.data.timer;
-    let strs = time.split(":"); //字符分割   
-    let newTime = this.toDub(strs[0] - 0 + 2) +':'+strs[1];   
+    let strs = time.split(":"); //字符分割
+    if(strs.length==2){
+      newTime = this.toDub(strs[0] - 0 + 2) + ':' + strs[1]; 
+    }else if(strs.length==3){
+      newTime = strs[0]+':'+this.toDub(strs[1] - 0 + 2) + ':' + strs[2]; 
+    }  
+      
     this.setData({
       showModalStatus: false,
       isRunning: false,

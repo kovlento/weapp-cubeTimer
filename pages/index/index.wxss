@@ -20,11 +20,14 @@ page{
 }
 
 .usermotto {
-  margin-top: 300rpx;
+  width: 100%;
+  margin: 300rpx auto;
+  text-align: center;
 }
 
 .user-motto {
-  font-size: 80px;
+  width: 100%;
+  font-size: 60px;
 }
 
 .tips {
@@ -32,6 +35,7 @@ page{
   font-size: 10px;
   color:#ccc;
   margin: 0 auto;
+  text-align: center;
 }
 
 .hide{
