@@ -28,7 +28,7 @@ Page({
       if (this.endTime - this.startTime < 350) {
         // clear timer
         this.timers && clearInterval(this.timers);
-      } else if (that.data.showModalStatus == false){
+      } else if (this.data.showTips == true && that.data.showModalStatus == false){
         this.formatTime(this);
         this.setData({
           showTips: false
@@ -47,6 +47,8 @@ Page({
     }
   },
   bindLongPress: function (e) {
+    console.log(this.data.isRunning)
+    console.log(this.data.showModalStatus)
     if (this.data.isRunning == false && this.data.showModalStatus == false){
       console.log("长按");
       this.setData({
@@ -76,8 +78,6 @@ Page({
         minute = 0;
         hour = hour + 1;
       }
-      console.log("m"+minute)
-      console.log("s" + second)
       if ( minute == 0 && second<60){
         timeee = _this.toDub(second) + ':' + _this.toDus(millisecond)
       }else{
@@ -109,7 +109,7 @@ Page({
   powerRestart: function(){
     console.log('重新开始');
     this.setData({
-      timer: "00:00",
+      timer: "00:000",
       isRunning: false,
       color: 'black',
       tips: '长按屏幕任意位置离开后开始计时',
