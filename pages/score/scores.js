@@ -93,6 +93,7 @@ Page({
   refreshFastest:function(){
     let score = wx.getStorageSync('scores');
     let newArr = this.filter_array(score);
+    
     let arr1 = [];
     if (score != '') {
       newArr.forEach(function (item) {
@@ -128,10 +129,11 @@ Page({
     let that = _that;
     let score = wx.getStorageSync('scores');
     let newArr = this.filter_array(score);
+    let arrs = newArr.reverse();
     let arr1 = [],arr2=[];
     if (score != '') {
-      console.log(newArr);
-      newArr.forEach(function (item) {
+      console.log(arrs);
+      arrs.forEach(function (item) {
         let items = item.split(':');
         console.log(items);
         let sumItem='';
@@ -150,7 +152,6 @@ Page({
         for (let j = 0; j < sum; j++) {
           let totalTime = 0;
           for (let i = j; i < j + n; i++) {
-
             totalTime = arr2[i]  + totalTime;
           };
           let timesavg = totalTime/5;
@@ -171,9 +172,9 @@ Page({
               console.log(11111111);
               s = parseInt(timesavg / 1000);
               iss = timesavg % 1000;
-              avg =  '00:' + that.toDub(s) + ':' + iss;
+              avg =  that.toDub(s) + ':' + iss;
             } else {
-              avg = '00:00' + ':' + timesavg
+              avg = '00' + ':' + timesavg
             }
           }
           let array = this.data.scores;
@@ -182,6 +183,7 @@ Page({
           }else if(n===12){
             array[j].ao12Times = avg;
           }
+          console.log(array);
           this.setData({
             scores: array
           })
