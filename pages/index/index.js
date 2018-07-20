@@ -1,6 +1,5 @@
 //index.js
 const util = require('../../utils/util.js')
-
 Page({
   data: {
     timer: "00:000",
@@ -9,12 +8,6 @@ Page({
     tips:'长按屏幕任意位置离开后开始计时',
     showTips:true,
     showModalStatus: false
-  },
-  onLoad: function () {
-    
-  },
-  onShow:function(){
-   
   },
   preventTouchMove: function (e) {
     //阻止mask出现后点击屏幕
@@ -33,7 +26,6 @@ Page({
         this.setData({
           showTips: false
         });
-        console.log(this.data.showTips);
       }
   },
   bindTap: function (e) {
@@ -47,8 +39,6 @@ Page({
     }
   },
   bindLongPress: function (e) {
-    console.log(this.data.isRunning)
-    console.log(this.data.showModalStatus)
     if (this.data.isRunning == false && this.data.showModalStatus == false){
       console.log("长按");
       this.setData({
@@ -60,9 +50,9 @@ Page({
   timeUp:function (callback){
     let _this =this
     let n = 0, timeee = '';
-    var hour, minute, second;//时 分 秒
+    let hour, minute, second;//时 分 秒
     hour = minute = second = 0;//初始化
-    var millisecond = 0;//毫秒
+    let millisecond = 0;//毫秒
     _this.timers = setInterval(function () {
       millisecond = millisecond + 50;
       if (millisecond >= 1000) {
@@ -120,8 +110,6 @@ Page({
   powerGood: function(){
     console.log('无惩罚');
     let time = this.data.timer;
-    // let strs = time.split(":"); //字符分割   
-    // let newTime = this.toDub(strs[0] - 0 ) + ':' + strs[1];
     this.setData({
       showModalStatus: false,
       isRunning: false,
@@ -179,10 +167,8 @@ Page({
   },
   passData: function (newTime){
     let sarray = wx.getStorageSync('scores');
-    console.log(sarray);
     sarray += newTime + ','
-    console.log(sarray);
-    var data = sarray.split(',');
+    let data = sarray.split(',');
     wx.setStorageSync('scores', data)
   }
 })

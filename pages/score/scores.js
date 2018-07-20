@@ -9,21 +9,6 @@ Page({
     fastest:'00:000',
     scores:[],
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */
@@ -31,7 +16,7 @@ Page({
     let array = [];
     let score = wx.getStorageSync('scores');
     if(score!=''){
-      var scoreArr = score.reverse();
+      let scoreArr = score.reverse();
       for (let i = 1; i < scoreArr.length; i++) {
         let obj = {};
         obj.times = score[i]
@@ -46,41 +31,6 @@ Page({
     this.timeAo5();
     this.timeAo12();
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
   refreshRevert:function(){
     var that = this;
     let score = wx.getStorageSync('scores');
@@ -93,7 +43,6 @@ Page({
   refreshFastest:function(){
     let score = wx.getStorageSync('scores');
     let newArr = this.filter_array(score);
-    
     let arr1 = [];
     if (score != '') {
       newArr.forEach(function (item) {
@@ -147,8 +96,6 @@ Page({
         arr2.push(sumItem);
       });
       console.log(arr2);
-      // let arr2 = (arr1.map(Number)).reverse();
-      // console.log(arr2);
       if (arr2 != '' && arr2.length > n-1) {
         let sum = arr2.length - (n - 1);
         for (let j = 0; j < sum; j++) {
@@ -193,7 +140,6 @@ Page({
       }
     }
   },
-
   toDub: function (n) {
     return n < 10 ? "0" + n : "" + n;
   },
