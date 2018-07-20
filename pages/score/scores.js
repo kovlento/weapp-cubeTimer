@@ -16,7 +16,7 @@ Page({
     let array = [];
     let score = wx.getStorageSync('scores');
     if(score!=''){
-      let scoreArr = score.reverse();
+      var scoreArr = score.reverse();
       for (let i = 1; i < scoreArr.length; i++) {
         let obj = {};
         obj.times = score[i]
@@ -43,6 +43,7 @@ Page({
   refreshFastest:function(){
     let score = wx.getStorageSync('scores');
     let newArr = this.filter_array(score);
+    
     let arr1 = [];
     if (score != '') {
       newArr.forEach(function (item) {
@@ -75,11 +76,11 @@ Page({
     this.avgCommon(n,_that);
   },
   avgCommon:function(n,_that){
-    let that = _that;
+    let that = _that,arrs=[];
     let score = wx.getStorageSync('scores');
     let newArr = this.filter_array(score);
     if(newArr!=null){
-      let arrs = newArr.reverse();
+      arrs = newArr.reverse();
     }
     let arr1 = [],arr2=[];
     if (score != '') {
@@ -95,7 +96,6 @@ Page({
         }
         arr2.push(sumItem);
       });
-      console.log(arr2);
       if (arr2 != '' && arr2.length > n-1) {
         let sum = arr2.length - (n - 1);
         for (let j = 0; j < sum; j++) {
