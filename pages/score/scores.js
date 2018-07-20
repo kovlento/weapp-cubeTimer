@@ -129,7 +129,9 @@ Page({
     let that = _that;
     let score = wx.getStorageSync('scores');
     let newArr = this.filter_array(score);
-    let arrs = newArr.reverse();
+    if(newArr!=null){
+      let arrs = newArr.reverse();
+    }
     let arr1 = [],arr2=[];
     if (score != '') {
       console.log(arrs);
