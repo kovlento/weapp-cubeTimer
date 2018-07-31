@@ -3,6 +3,7 @@
   <view class="usermotto">
     <text style="color:{{color}}" class="user-motto">{{timer}}</text>
     <view  class="tips {{showTips?'show':'hide'}}">{{tips}}</view>
+    <view  class="formula {{showFormula?'show':'hide'}}">{{formula}}</view>
   </view>
   <view  class="drawer_screen"  catchtouchmove="preventTouchMove" data-statu="close" wx:if="{{showModalStatus}}"></view>
 <!--content-->

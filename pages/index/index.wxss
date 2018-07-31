@@ -136,3 +136,9 @@ radio{
 .col-1 {-webkit-box-flex:1;box-flex:1;}
 .fl { float: left;}
 .fr { float: right;}
+.formula{
+  width: 96%;
+  margin: 200rpx auto;
+  font-size: 12px;
+  color: #666
+}
